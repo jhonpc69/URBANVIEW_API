@@ -39,10 +39,10 @@ public class JpaConfig {
     @Bean
     public DataSource dataSource() {
         return DataSourceBuilder.create()
-                .url("jdbc:postgresql://localhost:5432/chapatupoint")
-                //.url("jdbc:postgresql://db:5432/chapatupoint")
+                //.url("jdbc:postgresql://localhost:5432/chapatupoint")
+                .url("jdbc:postgresql://db:5432/chapatupoint")
                 .username("postgres")
-                .password("1234") // Cambia esto por tu contraseña
+                .password("12345") // Cambia esto por tu contraseña
                 .driverClassName("org.postgresql.Driver")
                 .build();
     }
