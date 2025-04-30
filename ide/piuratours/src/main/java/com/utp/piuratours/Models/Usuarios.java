@@ -50,4 +50,7 @@ public class Usuarios {
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
+
+    @OneToOne(mappedBy = "usuario")  // Esto mapea la relación inversa en VerificationCode
+    private VerificationCode verificationCode;
 }

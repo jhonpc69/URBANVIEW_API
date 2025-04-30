@@ -25,11 +25,11 @@ public class AppConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
-            final Usuarios user = repository.getUsuariosByDniUsuario(username)
+            final Usuarios user = repository.getUsuariosByCorreo(username)
                     .orElseThrow(() -> new UsernameNotFoundException("User not found"));
             return org.springframework.security.core.userdetails.User
                     .builder()
-                    .username(user.getDniUsuario())
+                    .username(user.getCorreo())
                     .password(user.getClaveusuario())
                     .build();
         };

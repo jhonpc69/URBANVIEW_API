@@ -19,7 +19,7 @@ public class PublicacionesController {
     private final PublicacionesService publicacionesService;
 
     @GetMapping("/listarPublicaciones")
-    public ResponseEntity<List<PublicacionesDto>> listarPublicaciones(@RequestParam Integer idCategoria,@RequestParam (required = false) String titulo) {
-        return ResponseEntity.ok(publicacionesService.ObtenerTodasPublicaciones(idCategoria,titulo));
+    public ResponseEntity<List<PublicacionesDto>> listarPublicaciones(@RequestParam Integer idCategoria, @RequestParam(required = false) String titulo) {
+        return ResponseEntity.ok(publicacionesService.ObtenerTodasPublicaciones(idCategoria, titulo));
     }
 }

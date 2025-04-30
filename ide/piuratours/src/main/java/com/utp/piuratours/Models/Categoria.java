@@ -24,5 +24,6 @@ public class Categoria {
     private String NombreCategoria;
 
     @OneToMany(mappedBy = "idCategoria")
+    @ToString.Exclude
     private List<Locales> localesList;
 }

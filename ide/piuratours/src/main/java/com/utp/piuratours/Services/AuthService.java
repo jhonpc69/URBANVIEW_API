@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
 
 public interface AuthService {
 
-    public TokenResponse authenticate(String email,String password);
-    public void saveUserToken(Usuarios user, String jwtToken);
-    public void revokeAllUserTokens(final Usuarios user);
-    public TokenResponse refreshToken(@NotNull final String authentication);
+     TokenResponse authenticate(String email,String password);
+     void saveUserToken(Usuarios user, String jwtToken);
+     void revokeAllUserTokens(final Usuarios user);
+     TokenResponse refreshToken(@NotNull final String authentication);
 }

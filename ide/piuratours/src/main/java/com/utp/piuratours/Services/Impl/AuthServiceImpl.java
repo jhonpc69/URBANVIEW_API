@@ -33,7 +33,7 @@ public class AuthServiceImpl implements AuthService {
                         password
                 )
         );
-        final Usuarios user = repository.getUsuariosByDniUsuario(email)
+        final Usuarios user = repository.getUsuariosByCorreo(email)
                 .orElseThrow();
         final String accessToken = jwtService.generateToken(user);
         final String refreshToken = jwtService.generateRefreshToken(user);

@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface UsuariosRepository extends JpaRepository<Usuarios,Integer> {
     Optional<Usuarios> getUsuariosByDniUsuario(String dni);
+
+    Optional<Usuarios> getUsuariosByCorreo(String correo);
 }
