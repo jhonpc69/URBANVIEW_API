@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface SolicitudesService {
 
-    SolicitudRegistroDto grabarSolicitud(Integer idUsuario, String ruc,String nombreLocal, String telefono,String diasSemana, String horaApertura, String horaCierre, Integer idCategoria, List<MultipartFile> imagenes,MultipartFile fichaRuc,String descripcion,String ubicacion,String linkFacebook,String linkInstagram,String linkMaps) throws IOException;
+    SolicitudRegistroDto grabarSolicitud(Integer idUsuario, String ruc,String nombreLocal, String telefono,String diasSemana, String horaApertura, String horaCierre, Integer idCategoria, List<MultipartFile> imagenes,MultipartFile fichaRuc,String descripcion,String ubicacion,String linkFacebook,String linkInstagram,String linkMaps,MultipartFile imgPortada,MultipartFile imgDestacado) throws IOException;
     PublicacionesDto decisionSolicitud(Integer idSolicitud, String decision,String comentario);
 
     Solicitudes obtenerSolicitudPorLocal(Locales idLocal);

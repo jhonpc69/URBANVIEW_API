@@ -39,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
         final String refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, accessToken);
-        return new TokenResponse(accessToken, refreshToken,new UsuarioRespuestaLogin(user.getIdUsuario(), Boolean.TRUE, user.getNombreUsuario()+" "+user.getApellidosUsuario() ,user.getDniUsuario(), user.getIdTipoUsuario().getIdTipoUsuario()));
+        return new TokenResponse(accessToken, refreshToken,new UsuarioRespuestaLogin(user.getIdUsuario(), Boolean.TRUE, user.getNombreUsuario()+" "+user.getApellidosUsuario() ,user.getDniUsuario(), user.getIdTipoUsuario().getIdTipoUsuario()),Boolean.TRUE);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class AuthServiceImpl implements AuthService {
         revokeAllUserTokens(user);
         saveUserToken(user, accessToken);
 
-        return new TokenResponse(accessToken, refreshToken,new UsuarioRespuestaLogin(user.getIdUsuario(), Boolean.TRUE, user.getNombreUsuario()+" "+user.getApellidosUsuario() ,user.getDniUsuario(), user.getIdTipoUsuario().getIdTipoUsuario()));
+        return new TokenResponse(accessToken, refreshToken,new UsuarioRespuestaLogin(user.getIdUsuario(), Boolean.TRUE, user.getNombreUsuario()+" "+user.getApellidosUsuario() ,user.getDniUsuario(), user.getIdTipoUsuario().getIdTipoUsuario()),Boolean.TRUE);
 
     }
 

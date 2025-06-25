@@ -34,9 +34,11 @@ public class SolicitudesController {
                                                                 @RequestParam String ubicacion,
                                                                 @RequestParam String linkFacebook,
                                                                 @RequestParam String linkInstagram,
-                                                                @RequestParam String linkMaps
+                                                                @RequestParam String linkMaps,
+                                                                @RequestParam MultipartFile imgPortada,
+                                                                @RequestParam MultipartFile imgDestacado
     ) throws IOException {
-        SolicitudRegistroDto response = solicitudesService.grabarSolicitud(idUsuario,ruc, nombreLocal, telefono,diasSemana, horaApertura, horaCierre, idCategoria, imagenes,fichaRuc,descripcion,ubicacion,linkFacebook,linkInstagram,linkMaps);
+        SolicitudRegistroDto response = solicitudesService.grabarSolicitud(idUsuario,ruc, nombreLocal, telefono,diasSemana, horaApertura, horaCierre, idCategoria, imagenes,fichaRuc,descripcion,ubicacion,linkFacebook,linkInstagram,linkMaps,imgPortada,imgDestacado);
         return ResponseEntity.ok(response);
 }
 

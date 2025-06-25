@@ -33,6 +33,8 @@ public class SolicitudesBuilder {
                     .telefono(local.getTelefono())
                     .ubicacion(local.getUbicacion())
                     .rutaPdf(local.getRutaPdf())
+                    .imgPortada(local.getImgPortada())
+                    .imgDestacado(local.getImgDestacado())
                     .build();
         }).collect(Collectors.toList());
     }

@@ -23,6 +23,10 @@ public class Categoria {
     @Column(name = "NombreCategoria")
     private String NombreCategoria;
 
+
+    @Column(name ="imagen" )
+    private byte[] imagen;
+
     @OneToMany(mappedBy = "idCategoria")
     @ToString.Exclude
     private List<Locales> localesList;

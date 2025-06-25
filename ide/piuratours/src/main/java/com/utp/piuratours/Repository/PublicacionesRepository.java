@@ -17,4 +17,5 @@ public interface PublicacionesRepository extends JpaRepository<Publicaciones,Int
     @Query("Select P from Publicaciones P where P.idLocal.idCategoria.idCategoria = :idCategoria and P.estado='1' ")
     List<Publicaciones> obtenerPublicacionPorCategoria2(Integer idCategoria);
 
+    List<Publicaciones> findByEstado(String estado);
 }

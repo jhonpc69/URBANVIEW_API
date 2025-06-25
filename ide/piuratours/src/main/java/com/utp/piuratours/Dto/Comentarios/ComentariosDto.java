@@ -19,4 +19,5 @@ public class ComentariosDto {
     private String nombreUsuario;
     private String Contenido;
     private String fechaComentario;
+    private Integer valoracion;
 }

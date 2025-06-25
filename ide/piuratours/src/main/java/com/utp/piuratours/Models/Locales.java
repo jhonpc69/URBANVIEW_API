@@ -67,9 +67,7 @@ public class Locales {
     @ToString.Include
     private String ubicacion;
 
-    @Column(name = "DiasSemana")
-    @ToString.Include
-    private String diasSemana;
+
 
     @Column(name = "ruc")
     @ToString.Include
@@ -78,6 +76,13 @@ public class Locales {
     @Column(name = "rutapdf")
     @ToString.Include
     private String rutaPdf;
+
+    @Column(name ="img_portada" )
+    private byte[] imgPortada;
+
+    @Column(name ="img_destacado" )
+    private byte[] imgDestacado;
+
 
     @ManyToOne
     @JoinColumn(name = "idCategoria")

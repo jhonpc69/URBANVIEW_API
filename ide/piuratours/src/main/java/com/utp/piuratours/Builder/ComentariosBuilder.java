@@ -15,6 +15,7 @@ public class ComentariosBuilder {
                 .nombreUsuario(comentario.getIdUsuario().getNombreUsuario())
                 .Contenido(comentario.getContenido())
                 .fechaComentario(comentario.getFechaComentario())
+                .valoracion(comentario.getValoracion())
                 .build()).collect(Collectors.toList());
 
     }

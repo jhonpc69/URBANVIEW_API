@@ -44,10 +44,8 @@ public class LocalesController {
                 }
             }
         }
-        System.out.println("salio del for");
         local.setEstado("0");
         localesService.grabarLocal(local);
-        System.out.println("se modifico informacion de local");
         return ResponseEntity.ok("se elimino correctamente");
     }
 }

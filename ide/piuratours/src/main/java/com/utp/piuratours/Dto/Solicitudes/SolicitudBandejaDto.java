@@ -28,4 +28,6 @@ public class SolicitudBandejaDto {
     private String linkInstagram;
     private String linkMaps;
     private String rutaPdf;
+    private byte[] imgPortada;
+    private byte[] imgDestacado;
 }

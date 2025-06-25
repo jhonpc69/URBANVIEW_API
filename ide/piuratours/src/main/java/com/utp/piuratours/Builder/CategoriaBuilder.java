@@ -13,6 +13,7 @@ public class CategoriaBuilder {
         return list.stream().map(registro -> CategoriasDto.builder()
                 .idCategoria(registro.getIdCategoria())
                 .NombreCategoria(registro.getNombreCategoria())
+                .imagen(registro.getImagen())
                 .build()).collect(Collectors.toList());
     }
 }

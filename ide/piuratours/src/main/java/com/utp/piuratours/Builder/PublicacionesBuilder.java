@@ -32,11 +32,12 @@ public class PublicacionesBuilder {
                     List<ComentariosDto> comentarios = comentariosService.findByIdPublicacion(publicacion);
                     return comentarios != null ? comentarios : List.of();
                 }));
-        // Build the PublicacionesDto objects using the cached data
+
         return list.stream().map(publicacion -> {
             Locales local = localesMap.get(publicacion.getIdLocal().getIdLocal());
             List<byte[]> imagenes = imagenesMap.get(local.getIdLocal());
             List<ComentariosDto> comentarios = comentariosMap.get(publicacion.getIdPublicacion());
+            Double valoracion = comentarios.stream().mapToDouble(ComentariosDto::getValoracion).average().orElse(0);
 
             return PublicacionesDto.builder()
                     .idUsuario(solicitudesRepository.buscarporPublicacion(local.getIdLocal()).getIdUsuario().getIdUsuario())
@@ -53,6 +54,7 @@ public class PublicacionesBuilder {
                     .linkMaps(local.getLink_Maps())
                     .comentarios(comentarios)
                     .imagenes(imagenes)
+                    .valoracion(valoracion)
                     .build();
         }).collect(Collectors.toList());
     }

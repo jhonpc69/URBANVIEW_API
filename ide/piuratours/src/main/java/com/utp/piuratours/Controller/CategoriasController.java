@@ -7,7 +7,9 @@ import com.utp.piuratours.Services.ImagenesService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,8 +26,8 @@ public class CategoriasController {
     }
 
     @PostMapping( "/agregarCategoria")
-    public ResponseEntity<CategoriasDto> agregarCategoria(@RequestParam String descripcion) {
-        return ResponseEntity.ok(categoriaService.agregarCategoria(descripcion));
+    public ResponseEntity<CategoriasDto> agregarCategoria(@RequestParam String descripcion, @RequestParam MultipartFile imagen) throws IOException {
+        return ResponseEntity.ok(categoriaService.agregarCategoria(descripcion,imagen));
     }
 
     @PostMapping("/eliminarCategoria")

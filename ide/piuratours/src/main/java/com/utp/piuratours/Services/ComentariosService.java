@@ -10,7 +10,7 @@ import java.util.List;
 public interface ComentariosService {
 
 
-    public ComentariosDto agregarComentarios(String comentario,Integer idPublicacion,Integer idUsuario);
+    public ComentariosDto agregarComentarios(String comentario,Integer idPublicacion,Integer idUsuario,Integer  valoracion);
 
     public List<ComentariosDto> findByIdPublicacion(Publicaciones idPublicacion);
 }

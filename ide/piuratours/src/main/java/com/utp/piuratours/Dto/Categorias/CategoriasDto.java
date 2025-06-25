@@ -11,5 +11,5 @@ import lombok.*;
 public class CategoriasDto {
     private Integer idCategoria;
     private String NombreCategoria;
-
+    private byte[] imagen;
 }

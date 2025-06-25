@@ -12,6 +12,7 @@ public interface PublicacionesService {
 
     List<PublicacionesDto> ObtenerTodasPublicaciones(Integer idCategora,String titulo);
     List<PublicacionesDto> ObtenerTodasPublicaciones2(Integer idCategora);
+    List<PublicacionesDto> listarPublicacionesDestacadas();
 
     Publicaciones obtenerPublicacionId(Integer idPublicacion);
 }

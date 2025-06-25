@@ -1,6 +1,7 @@
 package com.utp.piuratours.Controller.prueba;
 
 import com.utp.piuratours.Dto.Token.TokenResponse;
+import com.utp.piuratours.Dto.login.LoginDto;
 import com.utp.piuratours.Models.Usuarios;
 import com.utp.piuratours.Models.VerificationCode;
 import com.utp.piuratours.Repository.UsuariosRepository;
@@ -11,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -30,7 +28,7 @@ public class AuthController2 {
     private final VerificationCodeRepository codeRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticate(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<?> authenticate2(@RequestParam String email, @RequestParam String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
         final Usuarios user = repository.getUsuariosByCorreo(email)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -45,7 +43,7 @@ public class AuthController2 {
         }
         // Verificamos si ya existe un código activo
         if (existingCode != null && existingCode.getExpirationTime().isAfter(LocalDateTime.now()) && !existingCode.getCode().equals("0")) {
-            return ResponseEntity.badRequest().body("Ya tienes un código de verificación activo.");
+            return ResponseEntity.badRequest().body(new LoginDto(false, "Ya existe un codigo enviado para este usuario"));
         }
 
         // Generamos y enviamos un nuevo código de verificación
@@ -53,9 +51,28 @@ public class AuthController2 {
         emailService.sendVerificationCode(user.getCorreo(), verificationCode);
         saveVerificationCode(user, verificationCode);
 
-        return ResponseEntity.ok("Se envió un código de verificación al correo");
+        return ResponseEntity.ok(new LoginDto(true, "Se envio el correo correctamente"));
     }
 
+
+
+    //
+
+//    @PostMapping("/login")
+//    public ResponseEntity<TokenResponse> authenticate(@RequestParam String email,@RequestParam String password) {
+//        final TokenResponse response = service.authenticate(email,password);
+//        return ResponseEntity.ok(response);
+//    }
+//
+
+    //
+
+
+
+
+
+
+    @CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.POST})
     @PostMapping("/verify-code")
     public ResponseEntity<?> verifyCode(@RequestParam String email, @RequestParam String code, @RequestParam String claveUsuario) {
         Usuarios user = repository.getUsuariosByCorreo(email)
@@ -86,6 +103,11 @@ public class AuthController2 {
         final TokenResponse response = service.authenticate(email, claveUsuario);
         return ResponseEntity.ok(response);
     }
+
+
+
+
+
 
     public String generateVerificationCode() {
         int code = (int) (Math.random() * 900000) + 100000; // Genera un código de 6 dígitos

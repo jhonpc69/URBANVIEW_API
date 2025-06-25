@@ -31,4 +31,8 @@ public class Comentarios {
     @Column(name = "fechacomentario")
     private String fechaComentario;
 
+    @Column(name = "valoracion")
+    private Integer valoracion;
+
+
 }

@@ -30,5 +30,5 @@ public class PublicacionesDto {
     private String linkMaps;
     private List<ComentariosDto> comentarios;
     private List<byte[]> imagenes;
-
+    private Double valoracion;
 }

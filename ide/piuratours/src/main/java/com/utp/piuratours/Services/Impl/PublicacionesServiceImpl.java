@@ -16,7 +16,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -42,23 +44,40 @@ public class PublicacionesServiceImpl implements PublicacionesService {
 
     @Override
     public List<PublicacionesDto>
-    ObtenerTodasPublicaciones(Integer idCategoria,String titulo) {
+    ObtenerTodasPublicaciones(Integer idCategoria, String titulo) {
         List<Publicaciones> publicaciones = new ArrayList<Publicaciones>();
-        if(titulo ==null || titulo.isEmpty()){
-             publicaciones = publicacionesRepository.obtenerPublicacionPorCategoria2(idCategoria);
+        if (titulo == null || titulo.isEmpty()) {
+            publicaciones = publicacionesRepository.obtenerPublicacionPorCategoria2(idCategoria);
 
-        }else {
-            publicaciones = publicacionesRepository.obtenerPublicacionPorCategoria(idCategoria,titulo.toUpperCase());
+        } else {
+            publicaciones = publicacionesRepository.obtenerPublicacionPorCategoria(idCategoria, titulo.toUpperCase());
 
         }
-        return PublicacionesBuilder.BuildearPublicaciones(publicaciones,localesService,solicitudesRepository,imagenesService,comentariosService);
+        return PublicacionesBuilder.BuildearPublicaciones(publicaciones, localesService, solicitudesRepository, imagenesService, comentariosService);
     }
 
 
     @Override
     public List<PublicacionesDto>
+    listarPublicacionesDestacadas() {
+        List<Publicaciones> publicaciones = new ArrayList<Publicaciones>();
+
+        publicaciones = publicacionesRepository.findByEstado("1");
+
+        List<PublicacionesDto> publicacionesResult = PublicacionesBuilder.BuildearPublicaciones(publicaciones, localesService, solicitudesRepository, imagenesService, comentariosService);
+
+        List<PublicacionesDto> top5 = publicacionesResult.stream()
+                .sorted(Comparator.comparingDouble(PublicacionesDto::getValoracion).reversed()) // orden descendente
+                .limit(5)
+                .collect(Collectors.toList());
+
+        return top5;
+    }
+
+    @Override
+    public List<PublicacionesDto>
     ObtenerTodasPublicaciones2(Integer idCategoria) {
         List<Publicaciones> publicaciones = publicacionesRepository.obtenerPublicacionPorCategoria2(idCategoria);
-        return PublicacionesBuilder.BuildearPublicaciones(publicaciones,localesService,solicitudesRepository,imagenesService,comentariosService);
+        return PublicacionesBuilder.BuildearPublicaciones(publicaciones, localesService, solicitudesRepository, imagenesService, comentariosService);
     }
 }

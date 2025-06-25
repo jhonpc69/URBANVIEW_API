@@ -45,7 +45,7 @@ public class TokenServiceImpl implements JwtService {
         return Jwts
                 .builder()
                 .claims(Map.of("name", user.getNombreUsuario()))
-                .subject(user.getDniUsuario())
+                .subject(user.getCorreo())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSignInKey())
@@ -55,7 +55,7 @@ public class TokenServiceImpl implements JwtService {
     @Override
     public boolean isTokenValid(String token, Usuarios user) {
         final String username = extractUsername(token);
-        return (username.equals(user.getDniUsuario())) && !isTokenExpired(token);
+        return (username.equals(user.getCorreo())) && !isTokenExpired(token);
 
     }
 

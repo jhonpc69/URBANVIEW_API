@@ -22,4 +22,10 @@ public class PublicacionesController {
     public ResponseEntity<List<PublicacionesDto>> listarPublicaciones(@RequestParam Integer idCategoria, @RequestParam(required = false) String titulo) {
         return ResponseEntity.ok(publicacionesService.ObtenerTodasPublicaciones(idCategoria, titulo));
     }
+
+    @GetMapping("/listarPublicacionesDestacadas")
+    public ResponseEntity<List<PublicacionesDto>> listarPublicacionesDestacadas() {
+        return ResponseEntity.ok(publicacionesService.listarPublicacionesDestacadas());
+    }
+
 }

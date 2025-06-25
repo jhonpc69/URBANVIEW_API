@@ -49,7 +49,7 @@ public class SolicitudesServicesImpl implements SolicitudesService {
     private final PublicacionesService publicacionesService;
 
     @Override
-    public SolicitudRegistroDto grabarSolicitud(Integer idUsuario, String ruc, String nombreLocal, String telefono, String diasSemana, String horaApertura, String horaCierre, Integer idCategoria, List<MultipartFile> imagenes, MultipartFile fichaRuc, String descripcion, String ubicacion, String linkFacebook, String linkInstagram, String linkMaps) throws IOException {
+    public SolicitudRegistroDto grabarSolicitud(Integer idUsuario, String ruc, String nombreLocal, String telefono, String diasSemana, String horaApertura, String horaCierre, Integer idCategoria, List<MultipartFile> imagenes, MultipartFile fichaRuc, String descripcion, String ubicacion, String linkFacebook, String linkInstagram, String linkMaps,MultipartFile imgPortada,MultipartFile imgDestacado) throws IOException {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
         String formattedDate = currentDate.format(formatter);
@@ -61,13 +61,14 @@ public class SolicitudesServicesImpl implements SolicitudesService {
                 .ruc(ruc)
                 .descripcion(descripcion)
                 .ubicacion(ubicacion)
-                .diasSemana(diasSemana)
                 .horaApertura(horaApertura)
                 .horaCierre(horaCierre)
                 .estado("0")
                 .Link_Facebook(linkFacebook.isEmpty() ? null : linkFacebook)
                 .Link_Instagram(linkInstagram.isEmpty() ? null : linkInstagram)
                 .Link_Maps(linkMaps.isEmpty() ? null : linkMaps)
+                .imgPortada(imgPortada.getBytes())
+                .imgDestacado(imgDestacado.getBytes())
                 .idCategoria(categoriaService.obtenerLocalPorId(idCategoria)).build();
 
         Locales local = localesService.grabarLocal(localBuild);
@@ -100,7 +101,7 @@ public class SolicitudesServicesImpl implements SolicitudesService {
             }
             return imagenesService.guardaImagen(imagen);
         }).toList();
-        log.info("paslo por aca ");
+
         return SolicitudRegistroDto.builder()
                 .idSolicitud(solicitud.getIdSolicitud())
                 .idCategoria(local.getIdCategoria().getIdCategoria())

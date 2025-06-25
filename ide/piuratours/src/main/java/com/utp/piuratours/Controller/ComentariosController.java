@@ -20,10 +20,10 @@ public class ComentariosController {
     @PostMapping( "/agregarComentarios")
     public ResponseEntity<ComentariosDto> agregarComentarios(@RequestParam String comentario,
                                                              @RequestParam Integer idPublicacion,
-                                                             @RequestParam Integer idUsuario
+                                                             @RequestParam Integer idUsuario,
+                                                             @RequestParam Integer valoracion
                                                              ) {
-        return ResponseEntity.ok(comentariosService.agregarComentarios(comentario,idPublicacion,idUsuario));
+        return ResponseEntity.ok(comentariosService.agregarComentarios(comentario,idPublicacion,idUsuario,valoracion));
     }
-
 
 }

@@ -8,8 +8,6 @@ import com.utp.piuratours.Models.Usuarios;
 import com.utp.piuratours.Repository.ComentariosRepository;
 import com.utp.piuratours.Repository.PublicacionesRepository;
 import com.utp.piuratours.Services.ComentariosService;
-import com.utp.piuratours.Services.ImagenesService;
-import com.utp.piuratours.Services.PublicacionesService;
 import com.utp.piuratours.Services.UsuariosService;
 import com.utp.piuratours.Util.Util;
 import lombok.AllArgsConstructor;
@@ -32,18 +30,23 @@ public class ComentariosServiceImpl implements ComentariosService {
     }
 
     @Override
-    public ComentariosDto agregarComentarios(String comentario,Integer idPublicacion,Integer idUsuario) {
+    public ComentariosDto agregarComentarios(String comentario,Integer idPublicacion,Integer idUsuario,Integer valoracion) {
         Usuarios usuarioRegistro = usuariosService.obtenerUsuarioPorId(idUsuario);
-        Comentarios reponse = new Comentarios();
-        reponse.setFechaComentario(Util.obtenerFechaActualString());
-        reponse.setIdUsuario(usuarioRegistro);
-        reponse.setContenido(comentario);
-        reponse.setIdPublicacion(publicacionesRepository.findById(idPublicacion).get());
-        comentariosRepository.save(reponse);
+        Comentarios comentarioBuild = new Comentarios();
+        comentarioBuild.setFechaComentario(Util.obtenerFechaActualString());
+        comentarioBuild.setIdUsuario(usuarioRegistro);
+        comentarioBuild.setContenido(comentario);
+        comentarioBuild.setValoracion(valoracion);
+        comentarioBuild.setIdPublicacion(publicacionesRepository.findById(idPublicacion).get());
+        Comentarios comentarioSaved=comentariosRepository.save(comentarioBuild);
         return ComentariosDto.builder()
-                .idPublicacion(reponse.getIdPublicacion().getIdPublicacion())
-                .Contenido(reponse.getContenido())
+                .idPublicacion(comentarioSaved.getIdPublicacion().getIdPublicacion())
+                .Contenido(comentarioSaved.getContenido())
                 .nombreUsuario(usuarioRegistro.getNombreUsuario() +" "+ usuarioRegistro.getApellidosUsuario())
+                .valoracion(comentarioSaved.getValoracion())
                 .build();
     }
 }
+
+
+

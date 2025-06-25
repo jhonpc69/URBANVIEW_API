@@ -65,10 +65,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
         if (isTokenExpiredOrRevoked) {
-            final Optional<Usuarios> user = userRepository.getUsuariosByDniUsuario(userEmail);
+            System.out.println(">> Primer if ");
+
+            final Optional<Usuarios> user = userRepository.getUsuariosByCorreo(userEmail);
 
             if (user.isPresent()) {
                 final boolean isTokenValid = jwtService.isTokenValid(jwt, user.get());
+                System.out.println(">> Usuario presente");
 
                 if (isTokenValid) {
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
@@ -80,6 +83,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                             new WebAuthenticationDetailsSource().buildDetails(request)
                     );
                     SecurityContextHolder.getContext().setAuthentication(authToken);
+                    System.out.println(">> Usuario autenticado: " + userDetails.getUsername());
+
                 }
             }
         }
