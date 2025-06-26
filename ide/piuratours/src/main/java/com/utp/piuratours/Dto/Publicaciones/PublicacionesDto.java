@@ -31,4 +31,7 @@ public class PublicacionesDto {
     private List<ComentariosDto> comentarios;
     private List<byte[]> imagenes;
     private Double valoracion;
+    private byte[] imgPortada;
+    private byte[] imgDestacado;
+
 }

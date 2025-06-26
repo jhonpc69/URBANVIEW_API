@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.utp</groupId>
-    <artifactId>PiuraTours</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>servicio-urbanView</artifactId>
+    <version>1.0.0</version>
     <name>PiuraTours</name>
     <description>PiuraTours</description>
     <url/>

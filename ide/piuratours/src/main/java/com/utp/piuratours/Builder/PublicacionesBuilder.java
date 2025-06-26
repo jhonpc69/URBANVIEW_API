@@ -55,6 +55,8 @@ public class PublicacionesBuilder {
                     .comentarios(comentarios)
                     .imagenes(imagenes)
                     .valoracion(valoracion)
+                    .imgPortada(local.getImgPortada())
+                    .imgDestacado(local.getImgDestacado())
                     .build();
         }).collect(Collectors.toList());
     }
