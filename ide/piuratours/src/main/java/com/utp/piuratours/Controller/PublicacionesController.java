@@ -23,6 +23,11 @@ public class PublicacionesController {
         return ResponseEntity.ok(publicacionesService.ObtenerTodasPublicaciones(idCategoria, titulo));
     }
 
+    @GetMapping("/listarPublicacionesPorLocal")
+    public ResponseEntity<List<PublicacionesDto>> listarPublicacionesPorLocal(@RequestParam Integer idLocal) {
+        return ResponseEntity.ok(publicacionesService.ObtenerTodasPublicacionesPorLocal(idLocal));
+    }
+
     @GetMapping("/listarPublicacionesDestacadas")
     public ResponseEntity<List<PublicacionesDto>> listarPublicacionesDestacadas() {
         return ResponseEntity.ok(publicacionesService.listarPublicacionesDestacadas());

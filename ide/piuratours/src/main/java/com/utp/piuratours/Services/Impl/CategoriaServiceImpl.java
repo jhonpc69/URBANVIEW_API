@@ -43,8 +43,8 @@ public class CategoriaServiceImpl implements CategoriaService {
         BufferedImage originalImage = ImageIO.read(imagen.getInputStream());
 
         // 2. Crear imagen redimensionada
-        int targetWidth = 1920;
-        int targetHeight = 1080;
+        int targetWidth = 5669;
+        int targetHeight = 2525;
         BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
 
         Graphics2D g2d = resizedImage.createGraphics();

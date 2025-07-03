@@ -56,6 +56,17 @@ public class PublicacionesServiceImpl implements PublicacionesService {
         return PublicacionesBuilder.BuildearPublicaciones(publicaciones, localesService, solicitudesRepository, imagenesService, comentariosService);
     }
 
+    @Override
+    public List<PublicacionesDto>
+    ObtenerTodasPublicacionesPorLocal(Integer idLocal) {
+        List<Publicaciones> publicaciones = new ArrayList<Publicaciones>();
+
+        publicaciones = publicacionesRepository.obtenerPublicacionPorCategoria3(idLocal);
+
+
+        return PublicacionesBuilder.BuildearPublicaciones(publicaciones, localesService, solicitudesRepository, imagenesService, comentariosService);
+    }
+
 
     @Override
     public List<PublicacionesDto>
