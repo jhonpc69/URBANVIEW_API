@@ -3,6 +3,7 @@ package com.utp.piuratours.Config.Security;
 
 import com.utp.piuratours.Models.Token;
 import com.utp.piuratours.Repository.TokenRepository;
+import jakarta.servlet.DispatcherType;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,8 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers("/Auth2/**","/auth/**","Usuarios/registrarUsuarios","Publicaciones/**","Categorias/listarCategorias","Categorias/agregarCategoria")
+                        req.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
+                                .requestMatchers("/Auth2/**","/auth/**","Usuarios/registrarUsuarios","Publicaciones/**","Categorias/listarCategorias","Categorias/agregarCategoria")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()

@@ -23,6 +23,7 @@ public class EmailServiceImpl implements emailService {
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
+            helper.setFrom("noreply@urbanview.test");
             helper.setTo(to);
             helper.setSubject("Tu código de verificación");
 

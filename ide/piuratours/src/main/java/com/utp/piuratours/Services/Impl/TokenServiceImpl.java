@@ -32,7 +32,7 @@ public class TokenServiceImpl implements JwtService {
 
     @Override
     public String generateToken(Usuarios user) {
-        return buildToken(user, refreshExpiration);
+        return buildToken(user, jwtExpiration);
     }
 
     @Override
